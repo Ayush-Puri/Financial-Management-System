@@ -30,6 +30,7 @@ When testing APIs in Postman, do not use the "JWT Bearer" option.
 2. Select "Bearer Token" from the dropdown.
 3. Copy the token from the login response.
 4. Paste it into the Token field.
+
 📌 Do not use the "JWT Bearer" option, as it will not work with this API.
 
 Example Authorization Header:
