@@ -5,11 +5,6 @@
 This Financial Management System is a RESTful API service for managing saving goals, transactions, and reports. It allows users to register, manage their finances, and generate financial reports. Authentication is required for non-public endpoints.
 
 ---
- 
-## Table Structure with Relations
----<img width="854" alt="Screenshot 2025-01-20 at 10 16 23 AM" src="https://github.com/user-attachments/assets/d136fbd3-8393-47a9-b959-b36158ab3a49" />
-
-
 ## Authentication
 
 Authentication
@@ -41,6 +36,12 @@ When testing APIs in Postman, do not use the "JWT Bearer" option.
 
 <img width="727" alt="Screenshot 2025-03-10 at 1 11 56 PM" src="https://github.com/user-attachments/assets/4b1c4d5b-fde6-4cdc-87bc-5a51380589fd" />
 <img width="727" alt="Screenshot 2025-03-10 at 1 12 06 PM" src="https://github.com/user-attachments/assets/972dc030-5b9f-4bf3-9b00-ae0cbcf7c5c6" />
+
+
+---
+ 
+## Table Structure with Relations
+---<img width="854" alt="Screenshot 2025-01-20 at 10 16 23 AM" src="https://github.com/user-attachments/assets/d136fbd3-8393-47a9-b959-b36158ab3a49" />
 
 ---
 
