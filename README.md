@@ -59,7 +59,8 @@ When testing APIs in Postman, do not use the "JWT Bearer" option.
 {
   "username": "",
   "email": "",
-  "password": ""
+  "password": "",
+  "phone" : ""
 }
 ```
 #### **JSON Request Body for `/public/login` (POST)**
