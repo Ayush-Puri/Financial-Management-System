@@ -30,7 +30,7 @@ Authorization: Basic <username> <password>
 | Method | Endpoint         | Description       |
 | ------ | ---------------- | ----------------- |
 | `POST` | `/public/signup` | User registration |
-| `POST` | `/public/verify` | Verify user       |
+| `POST` | `/public/login`  | Login user        |
 
 #### **JSON Request Body for `/public/signup` (POST)**
 
@@ -38,6 +38,14 @@ Authorization: Basic <username> <password>
 {
   "username": "",
   "email": "",
+  "password": ""
+}
+```
+#### **JSON Request Body for `/public/login` (POST)**
+
+```json
+{
+  "username": "",
   "password": ""
 }
 ```
