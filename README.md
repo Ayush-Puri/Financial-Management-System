@@ -12,15 +12,30 @@ This Financial Management System is a RESTful API service for managing saving go
 
 ## Authentication
 
-All **non-public** API endpoints require authentication using Basic Auth:
+Authentication
 
-```
-Authorization: Basic <username> <password>
-```
+All non-public API endpoints require authentication using JWT (JSON Web Token).
 
-- `<username>` and `<password>` are credentials of an already registered user.
-- This ensures that transactions and saving goals are **user-specific** and prevents unauthorized modifications.
+Authentication Process
+- Users must first log in using their credentials at /public/login.
+- Upon successful login, the API responds with a JWT token in the response body.
+- For all authenticated requests, this token must be included in the Authorization header as a Bearer Token.
 
+⚠️ Important: Using Bearer Token in Postman
+When testing APIs in Postman, do not use the "JWT Bearer" option.
+
+✅ Use the "Bearer Token" option under Authorization
+
+1. Go to Authorization in Postman.
+2. Select "Bearer Token" from the dropdown.
+3. Copy the token from the login response.
+4. Paste it into the Token field.
+📌 Do not use the "JWT Bearer" option, as it will not work with this API.
+
+Example Authorization Header:
+Authorization: Bearer <JWT_TOKEN>
+<JWT_TOKEN> is the token received upon login.
+This ensures that transactions and saving goals are user-specific and prevents unauthorized modifications.
 ---
 
 ## API Endpoints
