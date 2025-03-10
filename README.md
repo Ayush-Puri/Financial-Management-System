@@ -33,10 +33,15 @@ When testing APIs in Postman, do not use the "JWT Bearer" option.
 
 📌 Do not use the "JWT Bearer" option, as it will not work with this API.
 
-Example Authorization Header:
-Authorization: Bearer <JWT_TOKEN>
-<JWT_TOKEN> is the token received upon login.
-This ensures that transactions and saving goals are user-specific and prevents unauthorized modifications.
+<img width="726" alt="Screenshot 2025-03-10 at 1 09 31 PM" src="https://github.com/user-attachments/assets/784eaa7c-fd89-4d06-9cd5-da9958840c61" />
+<img width="721" alt="Screenshot 2025-03-10 at 1 10 40 PM" src="https://github.com/user-attachments/assets/3871a36e-de46-4129-8b2e-b65e301312ed" />
+
+## For All the further Requests Please Add this Token recieved upon login into the "Bearer Token" Column of Auth Header as shown below.
+
+
+<img width="727" alt="Screenshot 2025-03-10 at 1 11 56 PM" src="https://github.com/user-attachments/assets/4b1c4d5b-fde6-4cdc-87bc-5a51380589fd" />
+<img width="727" alt="Screenshot 2025-03-10 at 1 12 06 PM" src="https://github.com/user-attachments/assets/972dc030-5b9f-4bf3-9b00-ae0cbcf7c5c6" />
+
 ---
 
 ## API Endpoints
