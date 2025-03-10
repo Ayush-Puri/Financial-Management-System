@@ -41,7 +41,7 @@ When testing APIs in Postman, do not use the "JWT Bearer" option.
 ---
  
 ## Table Structure with Relations
----<img width="854" alt="Screenshot 2025-01-20 at 10 16 23 AM" src="https://github.com/user-attachments/assets/d136fbd3-8393-47a9-b959-b36158ab3a49" />
+<img width="854" alt="Screenshot 2025-01-20 at 10 16 23 AM" src="https://github.com/user-attachments/assets/d136fbd3-8393-47a9-b959-b36158ab3a49" />
 
 ---
 
