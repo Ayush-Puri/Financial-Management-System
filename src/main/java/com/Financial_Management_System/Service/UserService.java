@@ -55,7 +55,6 @@ public class UserService {
                     .build();
     }
 
-
     public Optional<UserEntity> findUserEntityByUsername(String username) throws Exception{
         Optional<UserEntity> userFound = userRepository.findByUsername(username);
         if(userFound.isPresent()){
@@ -127,7 +126,6 @@ public class UserService {
         return "Deletion Unsuccessful";
     }
 
-
     public UserReadDTO updateUser(UserDTO user) throws Exception {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -146,5 +144,6 @@ public class UserService {
                 .wallet(currentUser.getWallet())
                 .category(currentUser.getCategory())
                 .build();
+
     }
 }
