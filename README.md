@@ -86,9 +86,12 @@ When testing APIs in Postman, do not use the "JWT Bearer" option.
 
 ### **Admin Endpoints (Requires Authentication)**
 
-| Method   | Endpoint                                    | Description          |
-| -------- | ------------------------------------------- | -------------------- |
-| `DELETE` | `http://localhost:8080/admin/user/{userId}` | Delete user by Admin |
+| Method   | Endpoint                                    | Description            |
+| -------- | ------------------------------------------- | ---------------------- |
+| `GET`    | `http://localhost:8080/admin/user`          | Get All Existing Users |
+| `DELETE` | `http://localhost:8080/admin/user/{userId}` | Delete user by Admin   |
+
+
 
 ### **Transaction Endpoints (Requires Authentication)**
 
