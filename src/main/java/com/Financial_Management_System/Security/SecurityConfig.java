@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> {
                     request.requestMatchers("/public/**").permitAll();
+                    request.requestMatchers("/admin/**").permitAll(); 
                     request.anyRequest().authenticated();})
                 .httpBasic(Customizer.withDefaults())
              .headers(head ->

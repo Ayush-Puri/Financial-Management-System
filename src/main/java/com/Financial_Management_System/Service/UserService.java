@@ -132,7 +132,7 @@ public class UserService {
 
     public String deleteUserEntitybyID(Long userId){
         if(isUserPresentinDatabase(userId)){
-            userRepository.deleteById(userId);
+            userRepository.deleteById(userId);  
             return "Deletion Successful";
         }
         return "Deletion Unsuccessful";
