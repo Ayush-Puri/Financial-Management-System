@@ -49,10 +49,10 @@ When testing APIs in Postman, do not use the "JWT Bearer" option.
 
 ### **Public Endpoints (No Authentication Required)**
 
-| Method | Endpoint         | Description       |
-| ------ | ---------------- | ----------------- |
-| `POST` | `/public/signup` | User registration |
-| `POST` | `/public/login`  | Login user        |
+| Method | Endpoint                              | Description       |
+| ------ | ------------------------------------- | ----------------- |
+| `POST` | `http://localhost:8080/public/signup` | User registration |
+| `POST` | `http://localhost:8080/public/login`  | Login user        |
 
 #### **JSON Request Body for `/public/signup` (POST)**
 
@@ -76,45 +76,27 @@ When testing APIs in Postman, do not use the "JWT Bearer" option.
 ### **User Endpoints (Requires Authentication)**
 }
 
-| Method   | Endpoint            | Description              |
-| -------- | ------------------- | ------------------------ |
-| `GET`    | `/api/allusers`     | Get all users            |
-| `GET`    | `/api/MyCategories` | Get user categories      |
-| `GET`    | `/api/user`         | Get current user details |
-| `PUT`    | `/api/user`         | Update user details      |
-| `DELETE` | `/api/user`         | Delete current user      |
+| Method   | Endpoint                                 | Description              |
+| -------- | ---------------------------------------- | ------------------------ |
+| `GET`    | `http://localhost:8080/api/allusers`     | Get all users            |
+| `GET`    | `http://localhost:8080/api/MyCategories` | Get user categories      |
+| `GET`    | `http://localhost:8080/api/user`         | Get current user details |
+| `PUT`    | `http://localhost:8080/api/user`         | Update user details      |
+| `DELETE` | `http://localhost:8080/api/user`         | Delete current user      |
 
 ### **Admin Endpoints (Requires Authentication)**
 
-| Method   | Endpoint               | Description          |
-| -------- | ---------------------- | -------------------- |
-| `DELETE` | `/admin/user/{userId}` | Delete user by Admin |
-
-### **Saving Goals Endpoints (Requires Authentication)**
-
-| Method   | Endpoint               | Description              |
-| -------- | ---------------------- | ------------------------ |
-| `GET`    | `/savingGoal`          | Get all saving goals     |
-| `POST`   | `/savingGoal`          | Create a new saving goal |
-| `PUT`    | `/savingGoal/{goalId}` | Update saving goal       |
-| `DELETE` | `/savingGoal/{goalId}` | Delete saving goal       |
-
-#### **JSON Request Body for `/savingGoal` (POST)**
-
-```json
-{
-  "targetamount": 3001.0,
-  "targetdate": "16-02-2025"
-}
-```
+| Method   | Endpoint                                    | Description          |
+| -------- | ------------------------------------------- | -------------------- |
+| `DELETE` | `http://localhost:8080/admin/user/{userId}` | Delete user by Admin |
 
 ### **Transaction Endpoints (Requires Authentication)**
 
-| Method | Endpoint                              | Description          |
-| ------ | ------------------------------------- | -------------------- |
-| `POST` | `/transaction/commit`                 | Commit a transaction |
-| `PUT`  | `/transaction/commit/{transactionId}` | Update transaction   |
-| `GET`  | `/transaction/viewAll`                | Get all transactions |
+| Method | Endpoint                                                   | Description          |
+| ------ | ---------------------------------------------------------- | -------------------- |
+| `POST` | `http://localhost:8080/transaction/commit`                 | Commit a transaction |
+| `PUT`  | `http://localhost:8080/transaction/commit/{transactionId}` | Update transaction   |
+| `GET`  | `http://localhost:8080/transaction/viewAll`                | Get all transactions |
 
 #### **JSON Request Body for `/transaction/commit` (POST)**
 
@@ -127,14 +109,32 @@ When testing APIs in Postman, do not use the "JWT Bearer" option.
 }
 ```
 
+### **Saving Goals Endpoints (Requires Authentication)**
+
+| Method   | Endpoint                                    | Description              |
+| -------- | ------------------------------------------- | ------------------------ |
+| `GET`    | `http://localhost:8080/savingGoal`          | Get all saving goals     |
+| `POST`   | `http://localhost:8080/savingGoal`          | Create a new saving goal |
+| `PUT`    | `http://localhost:8080/savingGoal/{goalId}` | Update saving goal       |
+| `DELETE` | `http://localhost:8080/savingGoal/{goalId}` | Delete saving goal       |
+
+#### **JSON Request Body for `/savingGoal` (POST)**
+
+```json
+{
+  "targetamount": 3001.0,
+  "targetdate": "16-02-2025"
+}
+```
+
 ### **Report Endpoints (Requires Authentication)**
 
-| Method | Endpoint         | Description                    |
-| ------ | ---------------- | ------------------------------ |
-| `GET`  | `/report`        | Get all reports                |
-| `GET`  | `/report/{year}` | Get report for a specific year |
+| Method | Endpoint                              | Description                    |
+| ------ | ------------------------------------- | ------------------------------ |
+| `GET`  | `http://localhost:8080/report`        | Get all reports                |
+| `GET`  | `http://localhost:8080/report/{year}` | Get report for a specific year |
 
-#### **JSON Request Body for `/report` (POST)**
+#### **JSON Request Body for `/report` (GET)**
 
 ```json
 {
