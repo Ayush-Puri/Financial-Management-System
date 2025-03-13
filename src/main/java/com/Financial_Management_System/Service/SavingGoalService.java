@@ -1,21 +1,22 @@
 package com.Financial_Management_System.Service;
 
-import com.Financial_Management_System.DTO.SavingGoalDTO;
-import com.Financial_Management_System.DTO.SavingGoal_ReturnDTO;
-import com.Financial_Management_System.Entity.SavingGoal;
-import com.Financial_Management_System.Entity.UserEntity;
-import com.Financial_Management_System.Repository.SavingGoalRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+
+import com.Financial_Management_System.DTO.SavingGoalDTO;
+import com.Financial_Management_System.DTO.SavingGoal_ReturnDTO;
+import com.Financial_Management_System.Entity.SavingGoal;
+import com.Financial_Management_System.Entity.UserEntity;
+import com.Financial_Management_System.Repository.SavingGoalRepository;
 
 @Service
 public class SavingGoalService {
@@ -37,7 +38,7 @@ public class SavingGoalService {
                 .map(goal -> SavingGoal_ReturnDTO
                         .builder()
                         .savinggoalid(goal.getSavinggoalid())
-                        .amountdifference(goal.getTargetamount()-currentUser.getWallet())
+                        .amountdifference(goal.getTargetamount()-currentUser.getWallet() > 0 ? goal.getTargetamount()-currentUser.getWallet():0)
                         .targetamount(goal.getTargetamount())
                         .targetdate(goal.getTargetdate())
                         .creationdate(goal.getCreationdate())
