@@ -1,12 +1,13 @@
 package com.Financial_Management_System.Service;
 
-import com.Financial_Management_System.DTO.AuthDTO;
-import com.Financial_Management_System.DTO.UserDTO;
-import com.Financial_Management_System.DTO.UserReadDTO;
-import com.Financial_Management_System.Entity.UserEntity;
-import com.Financial_Management_System.Repository.UserRepository;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,18 +16,26 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import com.Financial_Management_System.DTO.AuthDTO;
+import com.Financial_Management_System.DTO.UserDTO;
+import com.Financial_Management_System.DTO.UserReadDTO;
+import com.Financial_Management_System.Entity.UserEntity;
+import com.Financial_Management_System.Repository.UserRepository;
 
 @Service
 public class UserService {
 
     @Autowired
+    private JWTService JWTService;
+
+    @Autowired
     private AuthenticationManager authManager;
 
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    
     @Autowired
     private UserRepository userRepository;
+
 
     public List<UserReadDTO> findAll(){
 
@@ -69,12 +78,12 @@ public class UserService {
         category.add("food");
         category.add("rent");
         category.add("entertainment");
-        category.add("Uncategorized");
+        category.add("uncategorized");
 
         UserEntity newUser = UserEntity.builder()
-                .username(user.getUsername())
+                .username(user.getUsername().toLowerCase())
                 .password(encoder.encode(user.getPassword()))
-                .email(user.getEmail())
+                .email(user.getEmail().toLowerCase())
                 .category(category)
                 .phone(user.getPhone())
                 .wallet(0.0)
@@ -126,20 +135,40 @@ public class UserService {
         return "Deletion Unsuccessful";
     }
 
-    public UserReadDTO updateUser(UserDTO user) throws Exception {
+    public UserReadDTO updateUser(UserDTO UpdateUser) throws Exception {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
         UserEntity currentUser = findUserEntityByUsername(username).get();
 
-        currentUser.setEmail(user.getEmail());
-        currentUser.setPassword(user.getPassword());
-        currentUser.setUsername(user.getUsername());
+        // TODO: Add a check for the email to be unique by indicing the email column in the database
+        if(UpdateUser.getEmail()!=null && !UpdateUser.getEmail().equals(currentUser.getEmail())){
+            currentUser.setEmail(UpdateUser.getEmail().toLowerCase());
+        }
+        // TODO: Add a check for the pphone to be unique by indicing the phone column in the database
+        if(UpdateUser.getPhone()!=null && !UpdateUser.getPhone().equals(currentUser.getPhone())){
+            currentUser.setPhone(UpdateUser.getPhone());
+        }
+        if(UpdateUser.getPassword()!=null && !encoder.encode(UpdateUser.getPassword()).equals(currentUser.getPassword())){
+            currentUser.setPassword(encoder.encode(UpdateUser.getPassword()));
+        }
+
+        if(UpdateUser.getUsername()!=null &&  !UpdateUser.getUsername().equals(currentUser.getUsername())){
+            
+            //if Username already exists, throw error message    
+            if(userRepository.findByUsername(UpdateUser.getUsername()).isPresent()){
+               throw new Exception("Username already exists"); 
+            }
+            currentUser.setUsername(UpdateUser.getUsername().toLowerCase());
+        }
+
+
 
         userRepository.save(currentUser);
 
         return UserReadDTO.builder()
                 .username(currentUser.getUsername())
+                .phone(currentUser.getPhone())
                 .email(currentUser.getEmail())
                 .wallet(currentUser.getWallet())
                 .category(currentUser.getCategory())

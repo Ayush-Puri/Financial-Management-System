@@ -14,6 +14,7 @@ import java.util.*;
 public class UserReadDTO {
     private String username;
     private String email;
+    private String phone;
     private Double wallet;
     private Set<String> category = new HashSet<>();
 }

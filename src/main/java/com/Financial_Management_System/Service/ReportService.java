@@ -1,18 +1,19 @@
 package com.Financial_Management_System.Service;
 
-import com.Financial_Management_System.DTO.TransactionReturnDTO;
-import com.Financial_Management_System.DTO.TransactionType;
-import com.Financial_Management_System.DTO.UserReadDTO;
-import com.Financial_Management_System.Entity.ReportEntity;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Hashtable;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Hashtable;
-import java.util.List;
+import com.Financial_Management_System.DTO.TransactionReturnDTO;
+import com.Financial_Management_System.DTO.TransactionType;
+import com.Financial_Management_System.DTO.UserReadDTO;
+import com.Financial_Management_System.Entity.ReportEntity;
 
 @Service
 public class ReportService {
@@ -44,13 +45,13 @@ public class ReportService {
         Double savings = 0.0;
 
         for(TransactionReturnDTO transaction : list){
-            if(transaction.getType().equals(TransactionType.Income)){
+            if(transaction.getType().equals(TransactionType.income)){
                 income+= transaction.getAmount();
             }
-            if(transaction.getType().equals(TransactionType.Expense)){
+            if(transaction.getType().equals(TransactionType.expense)){
                 expenses+= transaction.getAmount();
             }
-            if(transaction.getType().equals(TransactionType.Saving)){
+            if(transaction.getType().equals(TransactionType.saving)){
                 savings+= transaction.getAmount();
             }
             categoryWiseSpending.put(transaction.getCategory(),
@@ -92,13 +93,13 @@ public class ReportService {
         Double savings = 0.0;
 
         for(TransactionReturnDTO transaction : list){
-            if(transaction.getType().equals(TransactionType.Income)){
+            if(transaction.getType().equals(TransactionType.income)){
                 income+= transaction.getAmount();
             }
-            if(transaction.getType().equals(TransactionType.Expense)){
+            if(transaction.getType().equals(TransactionType.expense)){
                 expenses+= transaction.getAmount();
             }
-            if(transaction.getType().equals(TransactionType.Saving)){
+            if(transaction.getType().equals(TransactionType.saving)){
                 savings+= transaction.getAmount();
             }
             categoryWiseSpending.put(transaction.getCategory(),

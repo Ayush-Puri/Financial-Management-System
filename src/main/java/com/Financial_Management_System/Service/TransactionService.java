@@ -1,6 +1,17 @@
 package com.Financial_Management_System.Service;
 
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+
 import com.Financial_Management_System.DTO.TransactionDTO;
 import com.Financial_Management_System.DTO.TransactionReturnDTO;
 import com.Financial_Management_System.DTO.TransactionType;
@@ -8,14 +19,6 @@ import com.Financial_Management_System.Entity.UserEntity;
 import com.Financial_Management_System.Entity.userTransaction;
 import com.Financial_Management_System.Repository.TransactionRepository;
 import com.Financial_Management_System.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class TransactionService {
@@ -40,7 +43,7 @@ public class TransactionService {
                 .user(user.get())
                 .username(username)
                 .amount(transactionDTO.getAmount())
-                .category(transactionDTO.getCategory().isBlank() ? "Uncategorized":transactionDTO.getCategory())
+                .category(transactionDTO.getCategory().toLowerCase().isBlank() ? "uncategorized":transactionDTO.getCategory().toLowerCase())
                 .type(transactionDTO.getType())
                 .dateTime(LocalDateTime.now())
                 .description(transactionDTO.getDescription())
@@ -50,7 +53,7 @@ public class TransactionService {
         transactionRepository.save(transaction);
 
         int multiplier = 0;
-        if(transactionDTO.getType()== TransactionType.Expense){
+        if(transactionDTO.getType()== TransactionType.expense){
             multiplier = -1;
         }else multiplier = 1;
 
@@ -58,10 +61,10 @@ public class TransactionService {
         double updatedWallet = user.get().getWallet()  + transactionDTO.getAmount()*multiplier;
         user.get().setWallet(updatedWallet);
 
-        if(!user.get().getCategory().contains(transactionDTO.getCategory())){
+        if(!user.get().getCategory().contains(transactionDTO.getCategory().toLowerCase())){
 
             Set<String> newCategoryList = user.get().getCategory();
-            newCategoryList.add(transactionDTO.getCategory());
+            newCategoryList.add(transactionDTO.getCategory().toLowerCase());
             user.get().setCategory(newCategoryList);
         }
 
@@ -100,7 +103,7 @@ public class TransactionService {
         Double previousAmt = transaction.get().getAmount();
 
         transaction.get().setAmount(transactionDTO.getAmount());
-        transaction.get().setCategory(transactionDTO.getCategory());
+        transaction.get().setCategory(transactionDTO.getCategory().toLowerCase());
         transaction.get().setDescription(transactionDTO.getDescription());
         transaction.get().setType(transactionDTO.getType());
 
