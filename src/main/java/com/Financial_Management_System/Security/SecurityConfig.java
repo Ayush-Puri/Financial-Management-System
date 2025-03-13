@@ -1,6 +1,5 @@
 package com.Financial_Management_System.Security;
 
-import com.Financial_Management_System.Service.JwtFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +19,8 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.Financial_Management_System.Service.JwtFilter;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -34,9 +35,8 @@ public class SecurityConfig {
      return    http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> {
-                    request.requestMatchers("/api/**").authenticated();
-                    request.requestMatchers("/transaction/**").authenticated();
-                    request.anyRequest().permitAll();})
+                    request.requestMatchers("/public/**").permitAll();
+                    request.anyRequest().authenticated();})
                 .httpBasic(Customizer.withDefaults())
              .headers(head ->
                      head.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))

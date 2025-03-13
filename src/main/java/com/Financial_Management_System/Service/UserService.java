@@ -43,6 +43,7 @@ public class UserService {
         return list_of_All_Users.stream()
                 .map(userFound -> UserReadDTO.builder()
                         .username(userFound.getUsername())
+                        .phone(userFound.getPhone())
                         .category(userFound.getCategory())
                         .wallet(userFound.getWallet())
                         .email(userFound.getEmail())
@@ -59,6 +60,7 @@ public class UserService {
             return UserReadDTO.builder()
                     .username(userFound.getUsername())
                     .email(userFound.getEmail())
+                    .phone(userFound.getPhone())
                     .category(userFound.getCategory())
                     .wallet(userFound.getWallet())
                     .build();
@@ -106,6 +108,7 @@ public class UserService {
         return userRepository.findAll().stream().map(
                 user -> UserReadDTO.builder()
                         .username(user.getUsername())
+                        .phone(user.getPhone())
                         .email(user.getEmail())
                         .category(user.getCategory())
                         .wallet(user.getWallet())
