@@ -100,10 +100,12 @@ When testing APIs in Postman, do not use the "JWT Bearer" option.
 
 #### **JSON Request Body for `/transaction/commit` (POST)**
 
+## type : income / expense / saving (ONLY!)
+
 ```json
 {
   "amount": 0,
-  "type": "Income",
+  "type": "income",
   "category": "",
   "description": ""
 }
