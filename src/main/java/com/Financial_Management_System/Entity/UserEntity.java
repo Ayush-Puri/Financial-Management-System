@@ -1,13 +1,21 @@
 package com.Financial_Management_System.Entity;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import java.util.List;
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.*;
 
 @Entity
 @Data
@@ -35,10 +43,10 @@ public class UserEntity {
     private Double wallet;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private Set<String> category = new HashSet<>();
+    private Set<String> category;
 
     @OneToMany
-    private Set<SavingGoal> savinggoals = new HashSet<>();
+    private Set<SavingGoal> savinggoals;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<userTransaction> transactionList;

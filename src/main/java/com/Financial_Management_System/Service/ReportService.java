@@ -2,7 +2,7 @@ package com.Financial_Management_System.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class ReportService {
             throw new Exception("No transactions Recorded in the Year : "+Year);
         }
 
-        Hashtable<String, Double> categoryWiseSpending = new Hashtable<>();
+        HashMap<String, Double> categoryWiseSpending = new HashMap<>();
         user.getCategory().stream().forEach(e -> categoryWiseSpending.put(e, 0.0));
 
         Double income = 0.0;
@@ -57,7 +57,6 @@ public class ReportService {
             categoryWiseSpending.put(transaction.getCategory(),
                     categoryWiseSpending.get(transaction.getCategory())
                             + transaction.getAmount());
-
         }
 
         return ReportEntity.builder()
@@ -72,7 +71,7 @@ public class ReportService {
                 .build();
     }
 
-    public ReportEntity generateMonthlyReport(LocalDate fromDate, LocalDate uptoDate) throws Exception {
+    public ReportEntity generateCustomReport(LocalDate fromDate, LocalDate uptoDate) throws Exception {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         UserReadDTO user = userService.findUser();
@@ -85,7 +84,7 @@ public class ReportService {
             throw new Exception("No transactions Recorded in the given Period from : "+fromDate+" to : "+uptoDate);
         }
 
-        Hashtable<String, Double> categoryWiseSpending = new Hashtable<>();
+        HashMap<String, Double> categoryWiseSpending = new HashMap<>();
         user.getCategory().stream().forEach(e -> categoryWiseSpending.put(e, 0.0));
 
         Double income = 0.0;

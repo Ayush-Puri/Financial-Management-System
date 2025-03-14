@@ -1,10 +1,15 @@
 package com.Financial_Management_System.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.Financial_Management_System.DTO.ReportDTO;
 import com.Financial_Management_System.Entity.ReportEntity;
 import com.Financial_Management_System.Service.ReportService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/report")
@@ -18,8 +23,8 @@ public class ReportController {
         return reportService.generateYearlyReport(year);
     }
 
-    @GetMapping()
-    public ReportEntity generateMonthlyReport(@RequestBody ReportDTO reportDTO) throws Exception {
-        return reportService.generateMonthlyReport(reportDTO.getFromDate(), reportDTO.getUptoDate());
+    @GetMapping("/custom")
+    public ReportEntity generateCustomReport(@RequestBody ReportDTO reportDTO) throws Exception {
+        return reportService.generateCustomReport(reportDTO.getFromDate(), reportDTO.getUptoDate());
     }
 }
