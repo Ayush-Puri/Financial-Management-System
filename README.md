@@ -174,7 +174,7 @@ For a complete walkthrough of API functionality, including testing all endpoints
 []
 
 
-This README provides a structured and quick reference for using the SYFE Financial Management API effectively.
+This README provides a structured and quick reference for using the Financial Management API effectively.
 
 
 
